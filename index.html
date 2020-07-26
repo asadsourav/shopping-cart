@@ -25,11 +25,11 @@
 
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input type="text" class="form-control text-center" value="1">
-                           <button class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button id="phone-minus" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input id="phone-quantity" type="text" class="form-control text-center" value="1">
+                           <button id="phone-plus" class="btn btn-default"><i class="fas fa-plus"></i></button>
                         </div>
-                        <h5>$1219</h5>
+                        <h5>$ <span id="phone-price">1219</span></h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -43,12 +43,12 @@
                      </div>
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input type="text" class="form-control text-center" value="1">
-                           <button class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button id="case-minus" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input id="case-quantity" type="text" class="form-control text-center" value="1">
+                           <button id="case-plus" class="btn btn-default"><i class="fas fa-plus"></i></button>
 
                         </div>
-                        <h5>$59</h5>
+                        <h5>$ <span id="case-price">59</span></h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -77,6 +77,55 @@
          </div>
       </div>
    </section>
+   <script>
+    var  phonePlusButton = document.getElementById('phone-plus');
+      phonePlusButton.addEventListener('click' , function(){
+      var phoneQuantity = document.getElementById('phone-quantity').value;
+      var phoneQuantityNumber = parseFloat(phoneQuantity);
+      
+      document.getElementById('phone-quantity').value = phoneQuantityNumber+1;
+      var updatedPrice = document.getElementById('phone-quantity').value*1219;
+      document.getElementById('phone-price').innerText = updatedPrice;
+    })
+    var phoneMinusButton = document.getElementById('phone-minus');
+      phoneMinusButton.addEventListener('click' , function(){
+      var phoneQuantity = document.getElementById('phone-quantity').value;
+      var phoneQuantityNumber = parseFloat(phoneQuantity);
+     
+      document.getElementById('phone-quantity').value = phoneQuantityNumber-1;
+      if(document.getElementById('phone-quantity').value <0){
+         document.getElementById('phone-quantity').value = 0;
+      }
+   
+         var updatedPrice = document.getElementById('phone-quantity').value*1219;
+      document.getElementById('phone-price').innerText = updatedPrice;
+
+    })
+
+    var  casePlusButton = document.getElementById('case-plus');
+      casePlusButton.addEventListener('click' , function(){
+      var caseQuantity = document.getElementById('case-quantity').value;
+      var caseQuantityNumber = parseFloat(caseQuantity);
+      
+      document.getElementById('case-quantity').value = caseQuantityNumber+1;
+      var updatedPrice = document.getElementById('case-quantity').value*59;
+      document.getElementById('case-price').innerText = updatedPrice;
+    })
+
+    var caseMinusButton = document.getElementById('case-minus');
+      caseMinusButton.addEventListener('click' , function(){
+      var caseQuantity = document.getElementById('case-quantity').value;
+      var caseQuantityNumber = parseFloat(caseQuantity);
+     
+      document.getElementById('case-quantity').value = caseQuantityNumber-1;
+      if(document.getElementById('case-quantity').value <0){
+         document.getElementById('case-quantity').value = 0;
+      }
+   
+         var updatedPrice = document.getElementById('case-quantity').value*59;
+         document.getElementById('case-price').innerText = updatedPrice;
+   })
+   </script>
 </body>
 
 </html>
