@@ -64,9 +64,9 @@
                      </div>
 
                      <div class="col-md-4 status">
-                        <h5>$1,278</h5>
-                        <h5>$0</h5>
-                        <h5>$1,278</h5>
+                        <h5>$ <span id="sub-total">1,278</span></h5>
+                        <h5>$ <span id="tax">0</span></h5>
+                        <h5>$ <span id="total">1,278</span></h5>
                      </div>
                   </div>
                </div>
@@ -78,15 +78,23 @@
       </div>
    </section>
    <script>
+      // phone plus button event handler 
     var  phonePlusButton = document.getElementById('phone-plus');
       phonePlusButton.addEventListener('click' , function(){
       var phoneQuantity = document.getElementById('phone-quantity').value;
       var phoneQuantityNumber = parseFloat(phoneQuantity);
       
       document.getElementById('phone-quantity').value = phoneQuantityNumber+1;
-      var updatedPrice = document.getElementById('phone-quantity').value*1219;
-      document.getElementById('phone-price').innerText = updatedPrice;
+      var updatedPhonePrice = document.getElementById('phone-quantity').value*1219;
+      document.getElementById('phone-price').innerText = updatedPhonePrice;
+   //   updating the subtotal part for phone
+   calculateSubTotal();
+   grandTotal();
+
+
     })
+   //  phone minus button event handler 
+
     var phoneMinusButton = document.getElementById('phone-minus');
       phoneMinusButton.addEventListener('click' , function(){
       var phoneQuantity = document.getElementById('phone-quantity').value;
@@ -97,10 +105,14 @@
          document.getElementById('phone-quantity').value = 0;
       }
    
-         var updatedPrice = document.getElementById('phone-quantity').value*1219;
-      document.getElementById('phone-price').innerText = updatedPrice;
+         var updatedPhonePrice = document.getElementById('phone-quantity').value*1219;
+      document.getElementById('phone-price').innerText = updatedPhonePrice;
+      // updating the subtotal part for phone 
+      calculateSubTotal();
+      grandTotal();
 
     })
+      // case plus button event handler
 
     var  casePlusButton = document.getElementById('case-plus');
       casePlusButton.addEventListener('click' , function(){
@@ -108,9 +120,14 @@
       var caseQuantityNumber = parseFloat(caseQuantity);
       
       document.getElementById('case-quantity').value = caseQuantityNumber+1;
-      var updatedPrice = document.getElementById('case-quantity').value*59;
-      document.getElementById('case-price').innerText = updatedPrice;
+      var updatedCasePrice = document.getElementById('case-quantity').value*59;
+      document.getElementById('case-price').innerText = updatedCasePrice;
+      calculateSubTotal();
+      grandTotal();
+      
     })
+      // case minus button event handler 
+
 
     var caseMinusButton = document.getElementById('case-minus');
       caseMinusButton.addEventListener('click' , function(){
@@ -122,9 +139,24 @@
          document.getElementById('case-quantity').value = 0;
       }
    
-         var updatedPrice = document.getElementById('case-quantity').value*59;
-         document.getElementById('case-price').innerText = updatedPrice;
+         var updatedCasePrice = document.getElementById('case-quantity').value*59;
+         document.getElementById('case-price').innerText = updatedCasePrice;
+         calculateSubTotal();
+         grandTotal();
    })
+
+   function calculateSubTotal() {
+      var updatedPhonePrice = document.getElementById('phone-quantity').value*1219;
+      var updatedCasePrice = document.getElementById('case-quantity').value*59;
+      document.getElementById('sub-total').innerText = updatedPhonePrice + updatedCasePrice;
+   }
+   function grandTotal(){
+      var taxAmount = document.getElementById('tax').innerText;
+      var taxAmountNumber = parseFloat(taxAmount);
+      var updatedPhonePrice = document.getElementById('phone-quantity').value*1219;
+      var updatedCasePrice = document.getElementById('case-quantity').value*59;
+      document.getElementById('total').innerText = updatedPhonePrice + updatedCasePrice+ taxAmountNumber;
+   }
    </script>
 </body>
 
